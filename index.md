@@ -1,3 +1,7 @@
+---
+title: Getting started with FusionCharts Ext JS extension
+---
+
 # Getting Started Guide
 
 This is a wrapper around FusionCharts which lets you use FusionCharts charts as native ExtJS components.
