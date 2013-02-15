@@ -86,7 +86,8 @@ Ext.define('FusionCharts.ui.Chart', {
     /**
     * Is fired when the fusioncharts component is fired.
     * sets up error handlers, default values and calls the method 
-    * to draw the chart. 
+    * to draw the chart.
+    * @private 
     */ 
     onRender: function(data) {
       this.callParent(arguments);
@@ -98,6 +99,7 @@ Ext.define('FusionCharts.ui.Chart', {
     /** 
     *Logs the error to the browser console
     * @param {String} the error message to display
+    * @private
     */  
     _errorHandler: function(msg){
       console.error(msg);
@@ -106,6 +108,7 @@ Ext.define('FusionCharts.ui.Chart', {
 
     /**
     * This method populates unset values with the defaults
+    * @private
     */
     _populateDefaults: function(){
       me = this;
@@ -120,11 +123,12 @@ Ext.define('FusionCharts.ui.Chart', {
       return me;
     },
 
-     /**
-     * Uses the FusionCharts constructor and methods to draw the chart based on the provided 
-     * chart data.
-     * @param {Object} the chart data
-     */
+    /**
+    * Uses the FusionCharts constructor and methods to draw the chart based on the provided 
+    * chart data.
+    * @param {Object} the chart data
+    * @private
+    */
     _drawChart: function(chartData) {
       fcWrapper = chartData.getEl();
       //create a div under fusioncharts-ext-wrapper where the chart will be drawn
@@ -156,7 +160,7 @@ Ext.define('FusionCharts.ui.Chart', {
     * This method updates the chart type by disposing the current chart
     * and creating a new one with the new chart type while preserving all the old chart
     * properties
-    * @param {String} new chart type
+    * @param {String} chartType 
     */
     updateChartType: function(newType){
       currentChart = FusionCharts(this.chartID);
@@ -176,7 +180,8 @@ Ext.define('FusionCharts.ui.Chart', {
 
     /**
     * This method updates the chart dimensions
-    * @param {String} newWidth, newHeight
+    * @param {String} newWidth, 
+    * @param {String} newHeight
     */
     updateChartDimensions: function(newWidth, newHeight){
       currentChart = FusionCharts(this.chartID);
