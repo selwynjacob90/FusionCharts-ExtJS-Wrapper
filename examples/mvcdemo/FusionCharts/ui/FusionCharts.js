@@ -1,4 +1,4 @@
-Ext.define('FusionCharts.core.FusionCharts', {
+Ext.define('FusionCharts.ui.FusionCharts', {
   
 });
 

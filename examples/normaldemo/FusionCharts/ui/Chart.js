@@ -1,16 +1,17 @@
-/*
+/**
 * This is a wrapper around FusionCharts which lets you use FusionCharts charts as native ExtJS components.
-* You can use FusionChats ExtJS component in either ExtJS MVC way or normal ExtJS application.
+* You can use FusionChats ExtJS component in either ExtJS MVC way or as a normal ExtJS application.
 *
 * ## Usage
-* 1. Extract the contents of the plugin to the root diretory of your application
-* 2. Require the plugin wherever you want to use FusionCharts ExtJS component
-*   example: 
+* 1. Download and extract the contents of the plugin. It contains the FusionCharts ExtJS plugin and a couple of examples. 
+* 2. Copy the FusionCharts directory to your ExtJS application root
+* 3. Require the plugin wherever you want to use FusionCharts ExtJS component
+*    example: 
 *     Ext.define('FCDemo.view.FCView' ,{
 *       extend: 'Ext.tab.Panel',
-*       requires: ['FusionCharts.ext.Plugin'] ...
+*       requires: ['FusionCharts.ui.Chart'] ...
 *   or
-*     Ext.require(['FusionCharts.ext.Plugin'])
+*     Ext.require(['FusionCharts.ui.Chart'])
 * 3. Use the FusionCharts component inside your application just like any other ExtJS component where the xtype of the component is fusioncharts.
 *         Ext.create('Ext.container.Viewport', {
 *            layout: 'fit',
@@ -45,7 +46,7 @@
 *  3. updateChartJSONUrl(newUrl) -> Updates the path to the JSONUrl
 *  4. updateChartJSONObject(newObj) -> Updates the JSONObject from which the chart reads the data
 */
-Ext.define('FusionCharts.core.Chart', {
+Ext.define('FusionCharts.ui.Chart', {
     
     extend: 'Ext.Component', // subclass Ext.Component
     alias: 'widget.fusioncharts', // this component will have an xtype of 'widget.fc'
@@ -54,7 +55,7 @@ Ext.define('FusionCharts.core.Chart', {
         cls: 'fusioncharts-ext-wrapper'
     },
     requires: [
-     'FusionCharts.core.FusionCharts',
+     'FusionCharts.ui.FusionCharts',
     ],
 
 
@@ -85,7 +86,8 @@ Ext.define('FusionCharts.core.Chart', {
     /**
     * Is fired when the fusioncharts component is fired.
     * sets up error handlers, default values and calls the method 
-    * to draw the chart. 
+    * to draw the chart.
+    * @private 
     */ 
     onRender: function(data) {
       this.callParent(arguments);
@@ -97,6 +99,7 @@ Ext.define('FusionCharts.core.Chart', {
     /** 
     *Logs the error to the browser console
     * @param {String} the error message to display
+    * @private
     */  
     _errorHandler: function(msg){
       console.error(msg);
@@ -105,6 +108,7 @@ Ext.define('FusionCharts.core.Chart', {
 
     /**
     * This method populates unset values with the defaults
+    * @private
     */
     _populateDefaults: function(){
       me = this;
@@ -119,11 +123,12 @@ Ext.define('FusionCharts.core.Chart', {
       return me;
     },
 
-     /**
-     * Uses the FusionCharts constructor and methods to draw the chart based on the provided 
-     * chart data.
-     * @param {Object} the chart data
-     */
+    /**
+    * Uses the FusionCharts constructor and methods to draw the chart based on the provided 
+    * chart data.
+    * @param {Object} the chart data
+    * @private
+    */
     _drawChart: function(chartData) {
       fcWrapper = chartData.getEl();
       //create a div under fusioncharts-ext-wrapper where the chart will be drawn
@@ -155,7 +160,7 @@ Ext.define('FusionCharts.core.Chart', {
     * This method updates the chart type by disposing the current chart
     * and creating a new one with the new chart type while preserving all the old chart
     * properties
-    * @param {String} new chart type
+    * @param {String} chartType 
     */
     updateChartType: function(newType){
       currentChart = FusionCharts(this.chartID);
@@ -175,7 +180,8 @@ Ext.define('FusionCharts.core.Chart', {
 
     /**
     * This method updates the chart dimensions
-    * @param {String} newWidth, newHeight
+    * @param {String} newWidth, 
+    * @param {String} newHeight
     */
     updateChartDimensions: function(newWidth, newHeight){
       currentChart = FusionCharts(this.chartID);
