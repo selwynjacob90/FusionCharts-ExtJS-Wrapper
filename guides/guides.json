@@ -1,0 +1,13 @@
+[
+      {
+          "title": "Ext JS 4 Guides",
+          "items": [
+              {
+                  "name": "getting_started",
+                  "url": "getting_started",
+                  "title": "Getting Started with Ext JS 4",
+                  "description": "This introduction to Ext JS 4 explains how you can get started."
+              }
+	  ]
+      }
+]
